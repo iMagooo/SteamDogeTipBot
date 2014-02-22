@@ -81,7 +81,7 @@ bot.on "friendMsg", (chatterID, message, type) ->
 			if registered is undefined
 				return bot.sendMessage chatterID, "The database ran into an error"
 			unless registered
-				return bot.sendMessage chatterID, "You must register before you can add funds. Do this by sending '+register'."
+				return bot.sendMessage chatterID, "You must register before you can proceed. Do this by sending '+register'."
 
 			if user
 				for transaction in user.history
@@ -132,7 +132,7 @@ bot.on "friendMsg", (chatterID, message, type) ->
 			if registered is undefined
 				return bot.sendMessage chatterID, "The database ran into an error"
 			unless registered
-				return bot.sendMessage chatterID, "You must register before you can add funds. Do this by sending '+register'."
+				return bot.sendMessage chatterID, "You must register before you can proceed. Do this by sending '+register'."
 
 			for transaction in user.history
 				if transaction.status is "pending"
@@ -181,7 +181,7 @@ bot.on "friendMsg", (chatterID, message, type) ->
 			if registered is undefined
 				return bot.sendMessage chatterID, "The database ran into an error"
 			unless registered
-				return bot.sendMessage chatterID, "You must register before you can add funds. Do this by sending '+register'."
+				return bot.sendMessage chatterID, "You must register before you can proceed. Do this by sending '+register'."
 
 			balance = user.funds
 			bot.sendMessage chatterID, "You currently have #{balance} DOGE"
@@ -190,7 +190,7 @@ bot.on "friendMsg", (chatterID, message, type) ->
 			if registered is undefined
 				return bot.sendMessage chatterID, "The database ran into an error"
 			unless registered
-				return bot.sendMessage chatterID, "You must register before you can add funds. Do this by sending '+register'."			
+				return bot.sendMessage chatterID, "You must register before you can proceed. Do this by sending '+register'."			
 			history = user.history
 			history = history.splice history.length - 10, history.length # Last 10 transactions in the history
 			message = "#{user.name}, here are your last 10 transactions:\n"
@@ -213,7 +213,7 @@ bot.on "friendMsg", (chatterID, message, type) ->
 			if registered is undefined
 				return bot.sendMessage chatterID, "The database ran into an error"
 			unless registered
-				return bot.sendMessage chatterID, "You must register before you can add funds. Do this by sending '+register'."
+				return bot.sendMessage chatterID, "You must register before you can proceed. Do this by sending '+register'."
 
 			address = message.split(" ")[1]
 			unless address?
@@ -271,7 +271,7 @@ bot.on "friendMsg", (chatterID, message, type) ->
 			if registered is undefined
 				return bot.sendMessage chatterID, "The database ran into an error"
 			unless registered
-				return bot.sendMessage chatterID, "You must register before you can add funds. Do this by sending '+register'."
+				return bot.sendMessage chatterID, "You must register before you can proceed. Do this by sending '+register'."
 
 			tipInfo = message.split(" ")
 			tipInfo.shift() # Remove first element (the "+tip" command)
