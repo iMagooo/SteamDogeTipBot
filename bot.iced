@@ -299,7 +299,7 @@ bot.on "friendMsg", (chatterID, message, type) ->
 			if shibe[0] is "#" and shibe[1..].length is 17
 				shibeID = shibe[1..] # Without the proceeding '#'
 				await Users_collection.findOne {"id": shibeID}, defer(err, registeredShibe)
-				shibe = registeredShibe.name
+				shibe = registeredShibe?.name
 			else
 				await Users_collection.findOne {"name": shibe}, defer(err, registeredShibe)
 			if err
@@ -377,6 +377,14 @@ bot.on "friend", (steamID, Relationship) ->
 				bot.removeFriend steamID
 			, 2000
 		, 2000
+bot.on "user", (userInfo) ->
+	await Users_collection.findOne {"id": userInfo.friendid}, defer(err, user)
+	return console.error err if err
+	return unless user
+	if user.name isnt userInfo.playerName
+		# If the name was changed, update it in the database
+		await Users_collection.update {"id": userInfo.friendid}, {$set: {"name": userInfo.playerName}}, {w:1}, defer(err)
+		return console.error err if err
 
 
 # Accept IPN callbacks from Moolah for successful payments
